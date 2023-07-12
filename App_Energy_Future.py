@@ -164,7 +164,7 @@ if check_password():
 
     chat_box = st.empty()
     stream_handler = StreamHandler(chat_box, display_method='write')
-    llm = OpenAI(openai_api_key=openai_api_key,temperature=0.9,max_tokens=1024,streaming=True,
+    llm = OpenAI(model_name="gpt-4", openai_api_key=openai_api_key,temperature=0.9,max_tokens=1024,streaming=True,
                  callbacks=[stream_handler])
 
 
