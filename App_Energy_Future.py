@@ -5,15 +5,17 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.memory import ConversationBufferMemory
 from langchain.utilities import WikipediaAPIWrapper
-import scholarly
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
 import wikipediaapi
+import wikipedia
+import scholarly
 import sys
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.chains import ConversationChain
 from langchain.callbacks.base import BaseCallbackHandler
+
 
 import nltk
 nltk.download('punkt')
