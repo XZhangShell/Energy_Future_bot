@@ -1,0 +1,10 @@
+
+[theme]
+primaryColor="#FF0000"
+backgroundColor="#FFFFFF"
+secondaryBackgroundColor="#FFD700"
+textColor="#262730"
+font="sans serif"
+[global]
+# Change the layout of the application.
+layout = "wide"
