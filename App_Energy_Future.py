@@ -5,17 +5,15 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.memory import ConversationBufferMemory
 from langchain.utilities import WikipediaAPIWrapper
+import scholarly
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
-
-import wikipedia
-import scholarly
+import wikipediaapi
 import sys
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.chains import ConversationChain
 from langchain.callbacks.base import BaseCallbackHandler
-
 
 import nltk
 nltk.download('punkt')
@@ -42,22 +40,17 @@ class StreamHandler(BaseCallbackHandler):
 
 class WikipediaAPIWrapper:
     def __init__(self, lang='en'):
-        wikipedia.set_lang(lang)
+        self.wiki = wikipediaapi.Wikipedia(lang)
 
     def get_summary(self, topic):
         try:
-            summary = wikipedia.summary(topic, sentences=5)  # Limit the summary to the first 5 sentences
-            return summary
-        except wikipedia.exceptions.DisambiguationError as e:
-            print(f"Disambiguation error: {e}")
-            return None
-        except wikipedia.exceptions.PageError as e:
-            print(f"Page error: {e}")
-            return None
+            page = self.wiki.page(topic)
+            if not page.exists():
+                return None
+            return page.summary[0:500]  # Limit the summary to the first 500 characters
         except Exception as e:
             print(f"An error occurred: {e}")
             return None
-
 
 
 def check_password():
@@ -146,7 +139,7 @@ if check_password():
         Also list any valid URLs that you get information from to inform your scenario.
         write the result in a perfect markdown format, use rich html to make the format beautiful.
         generate graphs and charts to make the result more readable in javascript.
-     """
+     ."""
     )
 
     scholar_prompt_template = PromptTemplate(
@@ -172,9 +165,8 @@ if check_password():
     llm = OpenAI(openai_api_key=openai_api_key,temperature=0.9,max_tokens=1024,streaming=True,
                  callbacks=[stream_handler])
 
-    # WIkipedia API wrapper
-    wiki = WikipediaAPIWrapper()
 
+    wiki = WikipediaAPIWrapper()
     # Create the LLMChain model with the provided template
     scenario_chain = LLMChain(llm=llm, prompt=scenario_template, verbose=True, output_key='scenario',
                               memory=scenario_memory, callbacks=[stream_handler])
