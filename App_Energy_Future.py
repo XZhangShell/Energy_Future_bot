@@ -42,7 +42,8 @@ class WikipediaAPIWrapper:
 
     def __init__(self, lang='en'):
         user_agent = "My User Agent 1.0"
-        self.wiki = wikipediaapi.Wikipedia(lang, user_agent=user_agent)
+        self.wiki = wikipediaapi.Wikipedia(language=lang, user_agent=user_agent)
+
     def get_summary(self, topic):
         try:
             page = self.wiki.page(topic)
