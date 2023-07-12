@@ -3,4 +3,5 @@ openai
 langchain
 scholarly
 sumy
+wikipedia
 wikipedia-api-0.6.0
