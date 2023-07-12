@@ -8,7 +8,7 @@ from langchain.utilities import WikipediaAPIWrapper
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
-import wikipediaapi
+
 import wikipedia
 import scholarly
 import sys
@@ -57,6 +57,7 @@ class WikipediaAPIWrapper:
         except Exception as e:
             print(f"An error occurred: {e}")
             return None
+
 
 
 def check_password():
