@@ -39,9 +39,10 @@ class StreamHandler(BaseCallbackHandler):
             raise ValueError(f"Invalid display_method: {self.display_method}")
 
 class WikipediaAPIWrapper:
-    def __init__(self, lang='en'):
-        self.wiki = wikipediaapi.Wikipedia(lang)
 
+    def __init__(self, lang='en'):
+        user_agent = "My User Agent 1.0"
+        self.wiki = wikipediaapi.Wikipedia(lang, user_agent=user_agent)
     def get_summary(self, topic):
         try:
             page = self.wiki.page(topic)
