@@ -139,7 +139,7 @@ if check_password():
         Also list any valid URLs that you get information from to inform your scenario.
         write the result in a perfect markdown format, use rich html to make the format beautiful.
         generate graphs and charts to make the result more readable in javascript.
-     ."""
+     """
     )
 
     scholar_prompt_template = PromptTemplate(
@@ -165,8 +165,9 @@ if check_password():
     llm = OpenAI(openai_api_key=openai_api_key,temperature=0.9,max_tokens=1024,streaming=True,
                  callbacks=[stream_handler])
 
-
+    # WIkipedia API wrapper
     wiki = WikipediaAPIWrapper()
+
     # Create the LLMChain model with the provided template
     scenario_chain = LLMChain(llm=llm, prompt=scenario_template, verbose=True, output_key='scenario',
                               memory=scenario_memory, callbacks=[stream_handler])
