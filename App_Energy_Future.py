@@ -40,14 +40,18 @@ class StreamHandler(BaseCallbackHandler):
 
 class WikipediaAPIWrapper:
     def __init__(self, lang='en'):
-        self.wiki = wikipediaapi.Wikipedia(lang)
+        wikipedia.set_lang(lang)
 
     def get_summary(self, topic):
         try:
-            page = self.wiki.page(topic)
-            if not page.exists():
-                return None
-            return page.summary[0:500]  # Limit the summary to the first 500 characters
+            summary = wikipedia.summary(topic, sentences=5)  # Limit the summary to the first 5 sentences
+            return summary
+        except wikipedia.exceptions.DisambiguationError as e:
+            print(f"Disambiguation error: {e}")
+            return None
+        except wikipedia.exceptions.PageError as e:
+            print(f"Page error: {e}")
+            return None
         except Exception as e:
             print(f"An error occurred: {e}")
             return None
