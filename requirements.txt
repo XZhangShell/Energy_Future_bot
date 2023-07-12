@@ -1,0 +1,6 @@
+streamlit
+openai
+langchain
+scholarly
+sumy
+wikipedia-api
