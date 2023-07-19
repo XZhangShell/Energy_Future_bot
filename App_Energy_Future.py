@@ -86,7 +86,75 @@ def check_password():
 if check_password():
     # st.write("Here goes your normal Streamlit app...")
     # App framework
+    if uploaded_file is not None:
+        # Read the uploaded CSV file into a DataFrame
+        df = pd.read_csv(uploaded_file)
+        
+        # Convert all column names to lowercase
+        df.columns = df.columns.str.lower()
+        # Check the data types of the DataFrame
+        #st.write(df.dtypes)
 
+        # Inspect the first few rows of the DataFrame
+        #st.write(df.head())
+
+
+        # Check the unique values in 'product' and 'flow' columns
+        #st.write(df['product'].unique())
+        #st.write(df['flow'].unique())
+        # Convert 'product' and 'flow' columns to lower case
+        df['product'] = df['product'].str.lower()
+        df['flow'] = df['flow'].str.lower()
+
+        # Define the subsets
+        subsets = [
+            ['solar', 'wind', 'hydro'],
+            ['natural gas: unabated', 'natural gas: with cccus'],
+            ['coal: unabated', 'coal: with cccus'],
+            ['oil', 'modern bioenergy: gas', 'hydrogen']
+        ]
+
+        # Convert the subsets to lower case
+        subsets = [[product.lower() for product in subset] for subset in subsets]
+
+        # Now the rest of your code...
+
+        # Define the color palettes
+        color_palettes = [
+            sns.color_palette('Set2'),
+            sns.color_palette('Dark2'),
+            sns.color_palette('Set1'),
+            sns.color_palette('Paired')
+        ]
+
+        # Create the plots
+        fig, axs = plt.subplots(len(subsets), 1, figsize=(14, 6*len(subsets)))
+
+        for i, subset in enumerate(subsets):
+            # Filter the dataset for the current subset of products and 'total energy supply' flow
+            df_subset = df[df['product'].isin(subset) & (df['flow'] == 'total energy supply')]
+
+            # Create a color dictionary for the current subset of products
+            colors = {product: color for product, color in zip(subset, color_palettes[i])}
+
+            # Iterate through the products, scenarios and create a line for each combination
+            for product in subset:
+                for scenario in df['scenario'].unique():
+                    data = df_subset[(df_subset['product'] == product) & (df_subset['scenario'] == scenario)]
+                    if not data.empty:  # Check if there is data for the combination
+                        axs[i].plot(data['year'], data['value'], color=colors[product], label=f'{product} - {scenario}')
+
+            axs[i].set_title('Total Energy Supply for Selected Products by Scenario')
+            axs[i].set_xlabel('Year')
+            axs[i].set_ylabel('Total Energy Supply (EJ)')
+            axs[i].legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+            axs[i].grid(True)
+
+        plt.tight_layout()
+        st.pyplot(fig)
+
+
+    ## AI part comes in    
 
     hide_streamlit_style = """
                 <style>
