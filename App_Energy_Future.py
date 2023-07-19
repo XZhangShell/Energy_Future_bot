@@ -86,6 +86,8 @@ def check_password():
 if check_password():
     # st.write("Here goes your normal Streamlit app...")
     # App framework
+    # Allow the user to upload a CSV file
+    uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
     if uploaded_file is not None:
         # Read the uploaded CSV file into a DataFrame
         df = pd.read_csv(uploaded_file)
