@@ -12,6 +12,7 @@ from sumy.summarizers.lex_rank import LexRankSummarizer
 import wikipediaapi
 import sys
 import pandas as pd
+import seaborn as sns
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.chains import ConversationChain
 from langchain.callbacks.base import BaseCallbackHandler
