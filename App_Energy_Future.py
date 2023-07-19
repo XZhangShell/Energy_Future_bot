@@ -11,6 +11,7 @@ from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
 import wikipediaapi
 import sys
+import pandas as pd
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.chains import ConversationChain
 from langchain.callbacks.base import BaseCallbackHandler
