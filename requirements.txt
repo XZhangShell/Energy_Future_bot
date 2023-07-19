@@ -5,3 +5,4 @@ scholarly
 sumy
 wikipedia
 wikipedia-api
+seaborn
