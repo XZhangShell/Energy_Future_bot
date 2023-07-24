@@ -201,7 +201,6 @@ if check_password():
         and how the industry might respond to these changes regarding {topic} .
         On top of these points, can you separately list what role might non-traditional players like tech companies, startups, and investment banks play in the {topic} by 2035?
         Write the result in a perfect markdown format, use rich HTML to make the format beautiful.
-        Generate graphs and charts to make the result more readable in Javascript.
         Topic: {topic}"""
     )
 
@@ -213,7 +212,7 @@ if check_password():
         and how the industry might respond to these changes regarding {topic} .
         Also list any valid URLs that you get information from to inform your scenario.
         write the result in a perfect markdown format, use rich html to make the format beautiful.
-        generate graphs and charts to make the result more readable in javascript.
+        
      ."""
     )
 
@@ -224,7 +223,7 @@ if check_password():
         and how the industry might respond to these changes regarding {topic} .
         Also list any valid URLs that you get information from to inform your scenario.
         write the result in a perfect markdown format, use rich html to make the format beautiful.
-        generate graphs and charts to make the result more readable in javascript.
+        
          including clickable citations as reference, list those papers in a list"""
     )
 
