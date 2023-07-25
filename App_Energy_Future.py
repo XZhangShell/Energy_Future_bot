@@ -201,7 +201,7 @@ if check_password():
         and how the industry might respond to these changes regarding {topic} .
         On top of these points, can you separately list what role might non-traditional players like tech companies, startups, and investment banks play in the {topic} by 2035?
         Write the result in a perfect markdown format, make the format beautiful.
-        Topic: {topic}"""
+        Based on the suggested scenarios and the documents found and synthesized, here is a future forecast report for Topic: {topic}"""
     )
 
 
