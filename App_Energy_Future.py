@@ -222,7 +222,7 @@ if check_password():
         On top of these points, can you separately list what role might non-traditional players like tech companies, startups, and investment banks play in the {topic} by 2035?
         Also list any valid URLs that you get information from to inform your scenario.
         write the result in a perfect markdown format, use rich html to make the format beautiful.
-        Include clickable citations as references, cite these Research Papers in APA.
+        Include clickable citations as references, cite these Research Papers in APA citation format.
      ."""
     )
 
@@ -241,7 +241,7 @@ if check_password():
         and how the industry might respond to these changes regarding {topic} .
         On top of these points, can you separately list what role might non-traditional players like tech companies, startups, and investment banks play in the {topic} by 2035?
         write the result in a perfect markdown format, use rich html to make the format beautiful.
-        Include clickable citations as references, cite these Research Papers in APA."""
+        Include clickable citations as references, cite these Research Papers in APA citation format."""
     )
 
 
