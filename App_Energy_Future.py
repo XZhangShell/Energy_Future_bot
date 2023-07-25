@@ -275,7 +275,8 @@ if check_password():
 
         # Function to summarize text using LexRank
 
-
+    scholar_research = fetch_google_scholar_research(prompt, 10)
+    summarized_research = summarize_text(scholar_research)
     def display_answer(answer, sources):
         st.markdown('**AI-generated Scenario:**')
         st.info(answer)
@@ -344,21 +345,18 @@ if check_password():
                         st.info(wiki_memory.buffer)
             # Enrich with Google Scholar research and summarization
             scholar_placeholder = st.empty()
-            
+
             scholar_research = fetch_google_scholar_research(prompt, 10)
-            if scholar_research:
+            summarized_research = summarize_text(scholar_research)
+            scholar_prompt = scholar_prompt_template.format(topic=prompt)
+            enriched_prompt_scholar = f"{scholar_prompt}\n{summarized_research}"
+            enriched_result_scholar = scholar_chain.run(enriched_prompt_scholar)
 
-                summarized_research = summarize_text(scholar_research)
+            if enriched_result_scholar:
+                display_answer(enriched_result_scholar, [{'title': paper['title'], 'url': paper['url'], 'abstract': paper['abstract']} for paper in scholar_research])
                 scholar_placeholder.success('AI-generated scenario enriched with Google Scholar research.')
-                scholar_prompt = scholar_prompt_template.format(topic=prompt)
-                enriched_prompt_scholar = f"{scholar_prompt}\n{summarized_research}"
-                enriched_result_scholar = scholar_chain.run(enriched_prompt_scholar)
-
-                if enriched_result_scholar:
-                    display_answer(enriched_result_scholar, [{'title': paper['title'], 'url': paper['url'], 'abstract': paper['abstract']} for paper in scholar_research])
-                    
-                    with st.expander('scholar History'): 
-                        st.info(scholar_memory.buffer)
+                with st.expander('scholar History'): 
+                    st.info(scholar_memory.buffer)
 
 
 
