@@ -212,8 +212,7 @@ if check_password():
         and how the industry might respond to these changes regarding {topic} .
         Also list any valid URLs that you get information from to inform your scenario.
         Write the result in a perfect markdown format, make the format beautiful.
-        
-     ."""
+        Include clickable citations as references, cite these Research Papers in APA."""
     )
 
     scholar_prompt_template = PromptTemplate(
@@ -223,8 +222,7 @@ if check_password():
         and how the industry might respond to these changes regarding {topic} .
         Also list any valid URLs that you get information from to inform your scenario.
         Write the result in a perfect markdown format, make the format beautiful.
-        
-         including clickable citations as reference, list those papers in a list"""
+        Include clickable citations as references, cite these Research Papers in APA."""
     )
 
     # Memory
