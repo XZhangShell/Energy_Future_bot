@@ -190,7 +190,7 @@ if check_password():
         template=
         """
         As an AI with extensive knowledge, I'm interested in understanding more about global energy trends, specifically regarding {topic}. There are several aspects of this that I would like you to consider:
-        1. Can you provide an analysis on the {topic}? 
+        1. Can you provide an analysis on the {topic}, based on you research from IEA, reports from IOC like BP, Shell and TOTAL, and Myriad Report, Wood Mackenzie, and the economics ? 
         2. Taking into account the current energy trends, what are the predictions for {topic} in the year 2035 and up until the end of the decade?
         3. Utilizing your predictive capabilities, can you provide an estimation of {topic} in the year 2035 and up until the end of the decade?
         4. Can you identify any significant shifts in industry trends related to {topic} for the next decade?
