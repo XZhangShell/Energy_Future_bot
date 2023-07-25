@@ -274,7 +274,12 @@ if check_password():
             return []
 
         # Function to summarize text using LexRank
-
+    # Function to summarize text using LexRank
+    def summarize_text(text):
+        parser = PlaintextParser.from_string(text, Tokenizer("english"))
+        summarizer = LexRankSummarizer()
+        summary = summarizer(parser.document, sentences_count=2)
+        return ' '.join([str(sentence) for sentence in summary])
     scholar_research = fetch_google_scholar_research(prompt, 10)
     summarized_research = summarize_text(scholar_research)
     def display_answer(answer, sources):
@@ -297,12 +302,7 @@ if check_password():
                     st.markdown(f"  **Abstract:** {source['abstract']}")
                 st.markdown('---')
 
-    # Function to summarize text using LexRank
-    def summarize_text(text):
-        parser = PlaintextParser.from_string(text, Tokenizer("english"))
-        summarizer = LexRankSummarizer()
-        summary = summarizer(parser.document, sentences_count=2)
-        return ' '.join([str(sentence) for sentence in summary])
+
 
     # Process user prompt
 
