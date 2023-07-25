@@ -352,6 +352,7 @@ if check_password():
             enriched_result_scholar = scholar_chain.run(enriched_prompt_scholar)
 
             if enriched_result_scholar:
+                enriched_prompt_scholar = f"{scholar_prompt}\n{summarized_research}"
                 display_answer(enriched_result_scholar, [{'title': paper['title'], 'url': paper['url'], 'abstract': paper['abstract']} for paper in scholar_research])
                 scholar_placeholder.success('AI-generated scenario enriched with Google Scholar research.')
                 with st.expander('scholar History'): 
